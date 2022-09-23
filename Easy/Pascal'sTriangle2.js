@@ -3,7 +3,7 @@
  * @param {number} rowIndex
  * @return {number[]}
  */
-var getRow = function(rowIndex) {
+var getRow = function (rowIndex) {
     const table = [
         [
             1
