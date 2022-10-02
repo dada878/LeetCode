@@ -14,3 +14,5 @@
         if (check && check != i) return [i, check];
     }
 };
+
+fo
