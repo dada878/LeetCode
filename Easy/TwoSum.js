@@ -4,7 +4,7 @@
  * @param {number} target
  * @return {number[]}
  */
- var twoSum = function(nums, target) {
+var twoSum = function (nums, target) {
     let table = {};
     for (let i in nums) {
         table[nums[i]] = i;
@@ -15,4 +15,3 @@
     }
 };
 
-fo
