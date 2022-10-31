@@ -1,3 +1,5 @@
+// Link "https://leetcode.com/problems/toeplitz-matrix"
+
 #include <iostream>
 #include <vector>
 
@@ -13,20 +15,15 @@ public:
 
         int baseY = 0;
 
-        while (baseY < lenY)
-        {
+        while (baseY < lenY) {
             int baseX = lenX - 1;
-            while (baseX >= 0)
-            {
+            while (baseX >= 0) {
                 int i = 0, j = 0, temp = -1;
-                while (baseX + i < lenX & baseY + j < lenY)
-                {
-                    if (temp == -1)
-                    {
+                while (baseX + i < lenX & baseY + j < lenY) {
+                    if (temp == -1) {
                         temp = matrix[baseX + i][baseY + j];
                     }
-                    else if (temp != matrix[baseX + i][baseY + j])
-                    {
+                    else if (temp != matrix[baseX + i][baseY + j]) {
                         return false;
                     }
                     i++;
