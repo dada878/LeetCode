@@ -1,3 +1,5 @@
+// Link: https://leetcode.com/problems/maximum-69-number
+
 #include <iostream>
 #include <cmath>
 
