@@ -1,0 +1,31 @@
+// https://leetcode.com/problems/find-median-from-data-stream/
+#include <iostream>
+#include <queue>
+using namespace std;
+
+class MedianFinder {
+public:
+    priority_queue<int> decreasing; // same: priority_queue<int, vector<int>, less<int>> decreasing;
+    priority_queue<int, vector<int>, greater<int>> increasing;
+    bool evn = true;
+
+    MedianFinder() { }
+
+    void addNum(int num) {
+        evn = !evn;
+        if (!evn) {
+            decreasing.push(num);
+            increasing.push(decreasing.top());
+            decreasing.pop();
+        } else {
+            increasing.push(num);
+            decreasing.push(increasing.top());
+            increasing.pop();
+        }
+    }
+
+    double findMedian() {
+        if (!evn) return increasing.top();
+        return (decreasing.top() + increasing.top()) / 2.0;
+    }
+};
