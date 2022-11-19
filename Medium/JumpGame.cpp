@@ -11,6 +11,6 @@ public:
             dp[i] = max(dp[max(i-1, 0)]-1, nums[i]);
             if (dp[i] == 0) return false;
         }
-        return dp[dp.size()-1] > 0 ? true : false;
+        return true;
     }
 };
