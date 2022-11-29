@@ -1,0 +1,1 @@
+<h2><a href="https://leetcode.com/problems/insert-delete-getrandom-o1/submissions/851834565/">Insert Delete GetRandom O(1)</a></h2><h3></h3><hr>hello
