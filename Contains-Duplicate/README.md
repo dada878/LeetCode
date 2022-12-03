@@ -1,0 +1,1 @@
+<h2><a href="https://leetcode.com/problems/contains-duplicate/submissions/854013801/?envType=study-plan&id=data-structure-i">Contains Duplicate</a></h2><h3></h3><hr>hello
