@@ -1,0 +1,1 @@
+<h2><a href="https://leetcode.com/problems/minimum-average-difference/submissions/854395475/">Minimum Average Difference</a></h2><h3></h3><hr>hello
