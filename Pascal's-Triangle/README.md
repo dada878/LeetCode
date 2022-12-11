@@ -1,0 +1,1 @@
+<h2><a href="https://leetcode.com/problems/pascals-triangle/submissions/857875186/?envType=study-plan&id=data-structure-i">Pascal's Triangle</a></h2><h3></h3><hr>hello
