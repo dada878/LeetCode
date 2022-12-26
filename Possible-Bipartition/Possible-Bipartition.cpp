@@ -1,45 +1,41 @@
 class Solution {
 public:
-    bool possibleBipartition(int N, vector&lt;vector&lt;int&gt;&gt;&amp; dislikes) {
-        // typical Bipartition 
-        if(dislikes.size()&lt;1)   return true;
-        bool b=true;
-        unordered_map&lt;int,unordered_set&lt;int&gt;&gt; um;
-        unordered_map&lt;int,unordered_set&lt;int&gt;&gt;::iterator umi;
-        vector&lt;int&gt; vt(N+1,0);
-        // Record Edges 
-        for( int i=1; i&lt;=N; i++){
-            unordered_set&lt;int&gt; us;
-            um.emplace( i, us);
-        }
-        for( int i=0; i&lt;dislikes.size(); i++){
-            umi=um.find(dislikes[i][0]);
-            if(umi-&gt;second.find(dislikes[i][1])==umi-&gt;second.end())  umi-&gt;second.emplace(dislikes[i][1]);
-            umi=um.find(dislikes[i][1]);
-            if(umi-&gt;second.find(dislikes[i][0])==umi-&gt;second.end())  umi-&gt;second.emplace(dislikes[i][0]);
-        }
-        // DFS
-        for( int i=1; i&lt;=N; i++){
-            if(vt[i]==0){// guranteed to visit all connected part 
-                vt[i]=1;
-                b=dfs( i, vt, um );
+    void dfs(
+        vector&lt;vector&lt;int&gt;&gt; &amp;graph,
+        vector&lt;bool&gt; &amp;visited,
+        vector&lt;int&gt;&amp; color,
+        int val,
+        bool&amp; result
+    ) {
+        // cout &lt;&lt; val &lt;&lt; endl;
+        vector&lt;int&gt; edge = graph[val];
+        for (int i = 0; i &lt; edge.size(); i++) {
+            if (!visited[edge[i]]) {
+                visited[edge[i]] = true;
+                color[edge[i]] = color[val] == 1 ? 2 : 1;
+                dfs(graph, visited, color, edge[i], result);
+            } else if (color[edge[i]] == color[val]) {
+                result = false;
             }
-            if(!b)  return false;
         }
-        return b;
     }
-    bool dfs( int i, vector&lt;int&gt;&amp; vt, unordered_map&lt;int,unordered_set&lt;int&gt;&gt;&amp; um ){
-        bool b;
-        unordered_map&lt;int,unordered_set&lt;int&gt;&gt;::iterator umi=um.find(i);
-        for( unordered_set&lt;int&gt;::iterator usi=umi-&gt;second.begin(); usi!=umi-&gt;second.end(); usi++){
-            if(vt[*usi]==0){
-                vt[*usi]=vt[i]*-1;
-                b=dfs( *usi, vt, um);
-                if(!b)  return false;
-            }else if(vt[*usi]==vt[i]){
-                return false;
+    bool possibleBipartition(int n, vector&lt;vector&lt;int&gt;&gt;&amp; dislikes) {
+        if (n &lt;= 1) return true;
+        vector&lt;vector&lt;int&gt;&gt; graph(n + 1);
+        vector&lt;bool&gt; visited(n + 1);
+        vector&lt;int&gt; color(n + 1);
+        for (int i = 0; i &lt; dislikes.size(); i++) {
+            graph[dislikes[i][0]].push_back(dislikes[i][1]);
+            graph[dislikes[i][1]].push_back(dislikes[i][0]);
+        }
+        bool result = true;
+        for (int i = 1; i &lt;= n; i++) {
+            if (!visited[i]) {
+                visited[i] = true;
+                color[i] = 1;
+                dfs(graph, visited, color, i, result);
             }
         }
-        return true;
+        return result;
     }
 };
