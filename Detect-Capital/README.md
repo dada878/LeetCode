@@ -1,0 +1,1 @@
+<h2><a href="https://leetcode.com/problems/detect-capital/submissions/869416690/">Detect Capital</a></h2><h3></h3><hr>hello
