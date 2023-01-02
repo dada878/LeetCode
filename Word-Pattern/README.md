@@ -1,0 +1,1 @@
+<h2><a href="https://leetcode.com/problems/word-pattern/submissions/869421474/">Word Pattern</a></h2><h3></h3><hr>hello
