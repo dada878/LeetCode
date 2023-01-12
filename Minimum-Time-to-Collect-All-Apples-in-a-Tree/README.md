@@ -1,1 +1,1 @@
-<h2><a href="https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/submissions/876194165/">Minimum Time to Collect All Apples in a Tree</a></h2><h3></h3><hr>hello
+<h2><a href="https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/submissions/876826242/">Minimum Time to Collect All Apples in a Tree</a></h2><h3></h3><hr>hello
