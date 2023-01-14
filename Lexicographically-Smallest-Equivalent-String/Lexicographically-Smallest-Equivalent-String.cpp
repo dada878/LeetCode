@@ -25,17 +25,16 @@ public:
         map&lt;char, char&gt; dp;
         vector&lt;bool&gt; visited(26);
         string result;
-        // // testing
-        // int start = charToInt('a');
-        // visited[start] = true;
-        // cout &lt;&lt; intToChar(dfs(graph, start, visited));
-        // return result;
-        // // end of testing
         for (auto chr : baseStr) {
             fill(visited.begin(), visited.end(), false);
             int start = charToInt(chr);
             visited[start] = true;
-            result.push_back(intToChar(dfs(graph, start, visited)));
+            if (dp.find(chr) != dp.end()) result.push_back(dp[chr]);
+            else {
+                char tmp = intToChar(dfs(graph, start, visited));
+                dp[chr] = tmp;
+                result.push_back(tmp);
+            }
         }
         return result;
     }
