@@ -1,45 +1,25 @@
 class Solution {
 public:
-    int minScore(int n, vector&lt;vector&lt;int&gt;&gt;&amp; roads) 
-    {
-        // Storing graph in a adjacency list
-        vector&lt;vector&lt;int&gt;&gt; adj[n+1];
-        for(int i=0;i&lt;roads.size();i++)
-        {
-            adj[roads[i][0]].push_back({roads[i][1],roads[i][2]});
-            adj[roads[i][1]].push_back({roads[i][0],roads[i][2]});
-        }
-        // making a visited array for keep tracking of all the cities (we have visited or not)
-        // n = number of cities
-        vector&lt;bool&gt; vis(n+1,false);
-        vis[1] = true;                                  // mark source node as a visited city
-        // BFS
-        queue&lt;int&gt; q;
-        q.push(1);
-        while(!q.empty())
-        {
-            int node = q.front();
-            q.pop();
-            for(auto &amp;it : adj[node])
-            {
-                if(!vis[it[0]])
-                {
-                    vis[it[0]] = true;
-                    q.push(it[0]);
-                }
+    int dfs(int node,int&amp; ans, vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt;&amp; gr, vector&lt;int&gt;&amp; vis){
+        vis[node] = 1;
+        for(auto&amp; [v, dis] : gr[node]){
+            ans = min(ans, dis);
+            if(vis[v]==0){
+                vis[v] = 1;
+                ans = min(ans, dfs(v, ans, gr, vis));
             }
         }
-        // Computing minimum distance from city 1 to n
+        return ans;
+    }
+    int minScore(int n, vector&lt;vector&lt;int&gt;&gt;&amp; roads) {
         int ans = INT_MAX;
-        for(int i=0;i&lt;roads.size();i++)
-        {
-            // minimum possible score out of all available paths
-            // if src and dest both are visited cities then try to make this our ans
-            if(vis[roads[i][0]] &amp;&amp; vis[roads[i][1]])
-            {
-                ans = min(ans,roads[i][2]);
-            }
+        vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt; gr(n+1);
+        for(auto edge : roads){ 
+            gr[edge[0]].push_back({edge[1], edge[2]}); // u-&gt; {v, dis}
+            gr[edge[1]].push_back({edge[0], edge[2]}); // v-&gt; {u, dis}
         }
+        vector&lt;int&gt; vis(n+1, 0);
+        dfs(1, ans, gr, vis);
         return ans;
     }
 };
