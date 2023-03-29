@@ -1,0 +1,1 @@
+<h2><a href="https://leetcode.com/problems/reducing-dishes/submissions/924289294/">Reducing Dishes</a></h2><h3></h3><hr>hello
