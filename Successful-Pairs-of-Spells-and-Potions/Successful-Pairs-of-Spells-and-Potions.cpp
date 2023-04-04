@@ -1,23 +1,25 @@
 class Solution {
 public:
-    vector&lt;int&gt; successfulPairs(vector&lt;int&gt;&amp; s, vector&lt;int&gt;&amp; p, long long suc) {
-        vector&lt;int&gt; v(s.size(),0);
-        sort(p.begin(),p.end());
-        for(int i=0;i&lt;s.size();i++)
-        {
-            int h=p.size()-1;
-            int l=0;
-            int mid;
-            while(l&lt;=h)
-            {
-                mid = l + (h-l)/2;
-                if((long long int)s[i]*(long long int)p[mid] &gt;= suc)
-                    h = mid-1;
-                else
-                    l = mid+1;
+    vector&lt;int&gt; successfulPairs(vector&lt;int&gt;&amp; spells, vector&lt;int&gt;&amp; potions, long long success) {
+        // Sort the potions array in increasing order.
+        sort(potions.begin(), potions.end());
+        vector&lt;int&gt; answer;
+        int m = potions.size();
+        int maxPotion = potions[m - 1];
+        for (auto&amp; spell : spells) {
+            // Minimum value of potion whose product with current spell  
+            // will be at least success or more.
+            long long minPotion = ceil((1.0 * success) / spell);
+            // Check if we don't have any potion which can be used.
+            if (minPotion &gt; maxPotion) {
+                answer.push_back(0);
+                continue;
             }
-            v[i] = p.size()-1-h;
+            // We can use the found potion, and all potion in its right 
+            // (as the right potions are greater than the found potion).
+            auto index = lower_bound(potions.begin(), potions.end(), minPotion) - potions.begin();
+            answer.push_back(m - index);
         }
-        return v;
+        return answer;
     }
 };
