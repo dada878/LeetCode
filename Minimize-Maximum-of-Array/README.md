@@ -1,0 +1,1 @@
+<h2><a href="https://leetcode.com/problems/minimize-maximum-of-array/submissions/928250394/">Minimize Maximum of Array</a></h2><h3></h3><hr>hello
